@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Book} from './shared/book';
-import {Comment} from './shared/comment';
+import {CommentService, Comment} from './shared/service/comment/comment.service';
 
 @Component({
   selector: 'bs-root',
@@ -20,12 +20,23 @@ export class AppComponent implements OnInit {
   comments: Array<Comment> = [];
   newComment: Comment;
 
+
+  constructor(private commentService: CommentService) { }
+
   ngOnInit(): void {
-    this.newComment = { login: '', text: '' };
+    this.resetNewComment();
+  }
+
+  private resetNewComment() {
+    this.newComment = {login: '', text: ''};
   }
 
   send() {
-    this.newComment.creationDate = new Date();
-    this.comments.push(this.newComment);
+    this.commentService
+        .save(this.newComment)
+        .subscribe(c => {
+          this.comments.push(c);
+          this.resetNewComment();
+        });
   }
 }
