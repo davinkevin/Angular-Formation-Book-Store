@@ -5,10 +5,12 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import {CommentService} from './shared/service/comment/comment.service';
+import { IsLoadingComponent } from './shared/is-loading/is-loading.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    IsLoadingComponent
   ],
   imports: [
     BrowserModule,

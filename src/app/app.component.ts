@@ -20,7 +20,7 @@ export class AppComponent implements OnInit {
 
   comments: Array<Comment> = [];
   form: FormGroup;
-
+  isLoading = false;
 
   constructor(
       private commentService: CommentService,
@@ -28,7 +28,6 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-
     this.form = this.formBuilder.group({
       login: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(12)]],
       text: ['', Validators.required]
@@ -36,11 +35,16 @@ export class AppComponent implements OnInit {
   }
 
   send() {
+    this.isLoading = true;
     this.commentService
         .save(this.form.value)
-        .subscribe(c => {
-          this.comments.push(c);
-          this.form.reset();
-        });
+        .subscribe(
+            c => {
+              this.comments.push(c);
+              this.form.reset();
+            },
+            () => this.isLoading = false,
+            () => this.isLoading = false
+        );
   }
 }
