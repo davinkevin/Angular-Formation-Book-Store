@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Book} from './shared/book';
 import {CommentService, Comment} from './shared/service/comment/comment.service';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
   selector: 'bs-root',
@@ -18,25 +19,28 @@ export class AppComponent implements OnInit {
   };
 
   comments: Array<Comment> = [];
-  newComment: Comment;
+  form: FormGroup;
 
 
-  constructor(private commentService: CommentService) { }
+  constructor(
+      private commentService: CommentService,
+      private formBuilder: FormBuilder
+  ) {}
 
   ngOnInit(): void {
-    this.resetNewComment();
-  }
 
-  private resetNewComment() {
-    this.newComment = {login: '', text: ''};
+    this.form = this.formBuilder.group({
+      login: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(12)]],
+      text: ['', Validators.required]
+    });
   }
 
   send() {
     this.commentService
-        .save(this.newComment)
+        .save(this.form.value)
         .subscribe(c => {
           this.comments.push(c);
-          this.resetNewComment();
+          this.form.reset();
         });
   }
 }
