@@ -1,0 +1,36 @@
+{
+  "books" : [
+    {
+      "id": 1,
+      "title": "Essential Angular",
+      "description": "The book is a short, but at the same time, fairly complete overview of the key aspects of Angular written by its core contributors Victor Savkin and Jeff Cross, who are founders of Nrwl - Angular Consulting for enterprise customers, from core contributors.",
+      "coverUrl": "assets/books/essential_angular.jpg"
+    }, {
+      "id": 2,
+      "title": "Angular Router",
+      "description": "This book is a comprehensive gu\"id\"e to the Angular router written by its designer, who is a co-founder Nrwl - Angular Consulting for enterprise customers, from core contributors.",
+      "coverUrl": "assets/books/angular_router.jpg"
+    }, {
+      "id": 3,
+      "title": "Upgrading Angular Applications",
+      "description": "The book explores NgUpgrade in depth, including the mental model, implementation, subtleties of the API. It also talks about different strategies for upgrading large AngularJS applications.",
+      "coverUrl": "assets/books/upgrading_angular_applications.jpg"
+    }, {
+      "id": 4,
+      "title": "Deviens un ninja avec Angular",
+      "description": "Angular est une refonte complète du célèbre framework AngularJS. Cet ebook t'aide à en comprendre la philosophie  (Angular 2, mais aussi Angular 4, 5, ...), les nouveaux outils (comme ES2015, TypeScript, SystemJS, Webpack, angular-cli...) et chaque brique du framework de façon pragmatique.",
+      "coverUrl": "assets/books/deviens_un_ninja_avec_angular.png"
+    }, {
+      "id": 5,
+      "title": "Deviens un ninja avec Angular",
+      "description": "Apprendre en lisant c'est cool. Mais on a parfois besoin d'un pied à l'étrier pour construire notre première application, et mettre les mains dans le cambouis. Avec ce Pack Pro, tu pourras télécharger un squelette d'application, plein de tests unitaires fournis. Tu pourras alors coder dans l'instant, étape par étape, pour construire une véritable application, en suivant ce que tu as appris dans le livre",
+      "coverUrl": "assets/books/deviens_un_ninja_avec_angular_pro_pack.png"
+    }, {
+      "id": 6,
+      "title": "Deviens un ninja avec Angular",
+      "description": "AngularJS est l'un des frameworks JavaScript les plus populaires du moment. Il permet une incroyable vitesse de développement, pour peu que l'on prenne le temps de l'apprendre. Car c'est aussi un framework complet et parfois complexe, qui demande un peu d'investissement pour donner son plein potentiel.",
+      "coverUrl": "assets/books/deviens_un_ninja_avec_angularjs.png"
+    }
+  ],
+  "comments": []
+}
