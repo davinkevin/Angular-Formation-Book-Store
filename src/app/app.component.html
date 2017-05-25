@@ -26,25 +26,36 @@
             <h3 class="panel-title">Send a comment</h3>
         </div>
         <div class="panel-body">
-            <form class="form-horizontal" role="form">
-                <div class="form-group">
-                    <label for="Login" class="col-sm-2 control-label">Login</label>
+            <form class="form-horizontal" role="form" [formGroup]="form" (ngSubmit)="send()">
 
+                <div class="form-group" [class.has-error]="form.get('login').touched && form.get('login').invalid">
+                    <label for="Login" class="col-sm-2 control-label">Login</label>
                     <div class="col-sm-10">
-                        <input class="form-control" id="Login" placeholder="Login" name="newComment.login" [(ngModel)]="newComment.login">
+                        <input class="form-control" id="Login" placeholder="Login" formControlName="login">
+                    </div>
+                    <div class="help-block col-sm-offset-3" *ngIf="form.get('login').errors && form.get('login').touched">
+                        <p *ngIf="form.get('login').hasError('minlength')">Login is too short</p>
+                        <p *ngIf="form.get('login').hasError('maxlength')">Login is too long</p>
+                        <p *ngIf="form.get('login').hasError('required')">Login is required</p>
                     </div>
                 </div>
-                <div class="form-group">
+
+                <div class="form-group" [class.has-error]="form.get('text').touched && form.get('text').invalid">
                     <label for="Comment" class="col-sm-2 control-label">Comment</label>
 
                     <div class="col-sm-10">
-                        <textarea class="form-control" id="Comment" placeholder="Comment" name="newComment.text" [(ngModel)]="newComment.text"></textarea>
+                        <textarea class="form-control" id="Comment" placeholder="Comment" formControlName="text"></textarea>
                     </div>
+
+                    <div class="help-block col-sm-offset-3" *ngIf="form.get('text').errors && form.get('text').touched">
+                        <p *ngIf="form.get('text').hasError('required')">Comment is required</p>
+                    </div>
+
                 </div>
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-default" (click)="send()">Send</button>
+                        <button type="submit" class="btn btn-default" [disabled]="form.invalid">Send</button>
                     </div>
                 </div>
             </form>

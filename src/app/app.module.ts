@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
@@ -12,10 +12,13 @@ import {CommentService} from './shared/service/comment/comment.service';
   ],
   imports: [
     BrowserModule,
-    FormsModule,
+    FormsModule, ReactiveFormsModule,
     HttpModule
   ],
-  providers: [CommentService],
+  providers: [
+      FormBuilder,
+      CommentService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
