@@ -15,4 +15,12 @@ export class AppComponent {
     coverUrl: 'assets/books/essential_angular.jpg'
   };
 
+  comments = [];
+
+  newComment: any = {};
+
+  send() {
+    this.newComment.creationDate = new Date();
+    this.comments.push(this.newComment);
+  }
 }
