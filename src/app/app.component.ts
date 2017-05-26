@@ -21,6 +21,7 @@ export class AppComponent implements OnInit {
   comments: Array<Comment> = [];
   form: FormGroup;
   isLoading = false;
+  maxNote = 10;
 
   constructor(
       private commentService: CommentService,
@@ -30,7 +31,8 @@ export class AppComponent implements OnInit {
   ngOnInit(): void {
     this.form = this.formBuilder.group({
       login: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(12)]],
-      text: ['', Validators.required]
+      text: ['', Validators.required],
+      note: [5, Validators.required]
     });
   }
 
@@ -46,5 +48,9 @@ export class AppComponent implements OnInit {
             () => this.isLoading = false,
             () => this.isLoading = false
         );
+  }
+
+  updateNote(note: number) {
+    this.form.get('note').setValue(note);
   }
 }

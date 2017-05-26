@@ -1,0 +1,21 @@
+ul.rating {
+
+  display: inline-block;
+  color: #a9a9a9;
+  margin: 0;
+  padding: 0;
+
+  .filled {
+    color: #337ab7;
+  }
+
+  li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 1px;
+    text-align: center;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+}

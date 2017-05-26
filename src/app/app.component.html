@@ -55,6 +55,12 @@
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
+                        <bs-star-rating note="5" [max]="maxNote" [isReadOnly]="false" (onNoteChange)="updateNote($event)"></bs-star-rating>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-sm-offset-2 col-sm-10">
                         <button type="submit" class="btn btn-default" [disabled]="form.invalid">
                             <bs-is-loading [loading]="isLoading"></bs-is-loading> Send
                         </button>
@@ -83,6 +89,7 @@
                             <div class="comment-text">
                                 {{ comment.text }}
                             </div>
+                            <bs-star-rating [note]="comment.note" [max]="maxNote" [isReadOnly]="true"></bs-star-rating>
                         </div>
                     </div>
                 </li>
