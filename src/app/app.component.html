@@ -7,7 +7,6 @@
 </nav>
 
 <div class="container">
-
     <div class="media book_description">
         <div class="media-left">
             <a>
@@ -55,7 +54,7 @@
 
                 <div class="form-group">
                     <div class="col-sm-offset-2 col-sm-10">
-                        <bs-star-rating note="5" [max]="maxNote" [isReadOnly]="false" (onNoteChange)="updateNote($event)"></bs-star-rating>
+                        <bs-star-rating formControlName="note" [max]="maxNote" [isReadOnly]="false"></bs-star-rating>
                     </div>
                 </div>
 
@@ -96,5 +95,4 @@
             </ul>
         </div>
     </div>
-
 </div>

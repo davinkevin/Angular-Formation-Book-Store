@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {Book} from './shared/book';
-import {CommentService, Comment} from './shared/service/comment/comment.service';
+import {Comment, CommentService} from './shared/service/comment/comment.service';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 @Component({
@@ -41,16 +41,12 @@ export class AppComponent implements OnInit {
     this.commentService
         .save(this.form.value)
         .subscribe(
-            c => {
-              this.comments.push(c);
-              this.form.reset();
-            },
+            c => this.comments.push(c),
             () => this.isLoading = false,
-            () => this.isLoading = false
+            () => {
+              this.isLoading = false;
+              this.form.reset({login: '', text: '', note: 5});
+            }
         );
-  }
-
-  updateNote(note: number) {
-    this.form.get('note').setValue(note);
   }
 }
