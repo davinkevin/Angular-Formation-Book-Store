@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, forwardRef, Input, OnInit} from '@angular/core';
+import {ControlValueAccessor, NG_VALUE_ACCESSOR} from '@angular/forms';
 
 declare interface Star {
   filled: boolean;
@@ -7,18 +8,29 @@ declare interface Star {
 @Component({
   selector: 'bs-star-rating',
   templateUrl: './star-rating.component.html',
-  styleUrls: ['./star-rating.component.scss']
+  styleUrls: ['./star-rating.component.scss'],
+  providers: [{
+    provide: NG_VALUE_ACCESSOR,
+    useExisting: forwardRef(() => StarRatingComponent),
+    multi: true
+  }]
+
 })
-export class StarRatingComponent implements OnInit {
+export class StarRatingComponent implements OnInit, ControlValueAccessor {
 
   @Input() note: number;
   @Input() max: number;
   @Input() isReadOnly = false;
-  @Output() onNoteChange = new EventEmitter<number>();
 
   stars: Array<Star>;
 
+  private onModelChange: Function;
+  private onTouch: Function;
+
   ngOnInit() {
+    if (this.note == null) {
+      return;
+    }
     this.updateStars();
   }
 
@@ -31,7 +43,7 @@ export class StarRatingComponent implements OnInit {
 
     this.updateStars();
 
-    this.onNoteChange.emit(note);
+    this.onModelChange(this.note);
   }
 
   updateStars() {
@@ -41,4 +53,20 @@ export class StarRatingComponent implements OnInit {
     }
   }
 
+  writeValue(note: number): void {
+    this.note = note;
+    this.updateStars();
+  }
+
+  registerOnChange(fn: any): void {
+    this.onModelChange = fn;
+  }
+
+  registerOnTouched(fn: any): void {
+    this.onTouch = fn;
+  }
+
+  setDisabledState(isDisabled: boolean): void {
+    throw new Error('Method not implemented.');
+  }
 }
