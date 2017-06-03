@@ -9,6 +9,9 @@ import {CommentService} from './shared/service/comment/comment.service';
 import {CommonModule} from '@angular/common';
 import {SharedModule} from '../shared/shared.module';
 import {BooksRoutesModule} from './books.routes';
+import {BooksResolver} from './shared/resolver/books/books.resolver';
+import {BookResolver} from './shared/resolver/book/book.resolver';
+import {BookCommentsResolver} from './shared/resolver/book-comments/book-comments.resolver';
 
 @NgModule({
   declarations: [
@@ -23,8 +26,8 @@ import {BooksRoutesModule} from './books.routes';
   ],
   providers: [
     FormBuilder,
-    BookService,
-    CommentService
+    BookService, CommentService,
+    BooksResolver, BookResolver, BookCommentsResolver
   ]
 })
 export class BooksModule { }
