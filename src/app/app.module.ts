@@ -9,13 +9,16 @@ import { IsLoadingComponent } from './shared/is-loading/is-loading.component';
 import { StarRatingComponent } from './shared/star-rating/star-rating.component';
 import {AppRoutesModules} from './app.routes';
 import {BookDetailsComponent} from './book-details/book-details.component';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    HomeComponent,
     BookDetailsComponent,
     IsLoadingComponent,
-    StarRatingComponent
+    StarRatingComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule, HttpModule,
