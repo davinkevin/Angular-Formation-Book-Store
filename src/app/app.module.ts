@@ -11,6 +11,7 @@ import {AppRoutesModules} from './app.routes';
 import {BookDetailsComponent} from './book-details/book-details.component';
 import { HomeComponent } from './home/home.component';
 import { BooksComponent } from './books/books.component';
+import {BookService} from './shared/service/book/book.service';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { BooksComponent } from './books/books.component';
   ],
   providers: [
       FormBuilder,
+      BookService,
       CommentService
   ],
   bootstrap: [AppComponent]
