@@ -10,6 +10,7 @@ import { StarRatingComponent } from './shared/star-rating/star-rating.component'
 import {AppRoutesModules} from './app.routes';
 import {BookDetailsComponent} from './book-details/book-details.component';
 import { HomeComponent } from './home/home.component';
+import { BooksComponent } from './books/books.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { HomeComponent } from './home/home.component';
     BookDetailsComponent,
     IsLoadingComponent,
     StarRatingComponent,
-    HomeComponent
+    HomeComponent,
+    BooksComponent
   ],
   imports: [
     BrowserModule, HttpModule,
