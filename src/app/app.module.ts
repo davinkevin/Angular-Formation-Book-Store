@@ -1,38 +1,23 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import {FormBuilder, FormsModule, ReactiveFormsModule} from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import {BrowserModule} from '@angular/platform-browser';
+import {NgModule} from '@angular/core';
 
-import { AppComponent } from './app.component';
-import {CommentService} from './shared/service/comment/comment.service';
-import { IsLoadingComponent } from './shared/is-loading/is-loading.component';
-import { StarRatingComponent } from './shared/star-rating/star-rating.component';
+import {AppComponent} from './app.component';
 import {AppRoutesModules} from './app.routes';
-import {BookDetailsComponent} from './book-details/book-details.component';
-import { HomeComponent } from './home/home.component';
-import { BooksComponent } from './books/books.component';
-import {BookService} from './shared/service/book/book.service';
+import {HomeComponent} from './home/home.component';
+import {BooksModule} from './books/books.module';
+import {SharedModule} from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    BookDetailsComponent,
-    IsLoadingComponent,
-    StarRatingComponent,
-    HomeComponent,
-    BooksComponent
+    HomeComponent
   ],
   imports: [
-    BrowserModule, HttpModule,
-    FormsModule, ReactiveFormsModule,
-    AppRoutesModules
+    BrowserModule,
+    AppRoutesModules,
+    BooksModule
   ],
-  providers: [
-      FormBuilder,
-      BookService,
-      CommentService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
