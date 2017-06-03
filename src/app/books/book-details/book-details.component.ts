@@ -33,6 +33,11 @@ export class BookDetailsComponent implements OnInit {
         .switchMap(id => this.bookService.findOne(id))
         .subscribe(b => this.book = b);
 
+    this.route.params
+        .map(p => +p.id)
+        .switchMap(id => this.commentService.findByBook(id))
+        .subscribe(c => this.comments = c);
+
     this.form = this.formBuilder.group({
       login: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(12)]],
       text: ['', Validators.required],
@@ -43,7 +48,7 @@ export class BookDetailsComponent implements OnInit {
   send() {
     this.isLoading = true;
     this.commentService
-        .save(this.form.value)
+        .save(this.form.value, this.book)
         .subscribe(
             c => this.comments.push(c),
             () => this.isLoading = false,
