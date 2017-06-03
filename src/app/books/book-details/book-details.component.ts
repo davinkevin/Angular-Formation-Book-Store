@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import {CommentService, Comment} from '../shared/service/comment/comment.service';
-import {Book, BookService} from '../shared/service/book/book.service';
+import {Comment, CommentService} from '../shared/service/comment/comment.service';
+import {Book} from '../shared/service/book/book.service';
 import {ActivatedRoute} from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
@@ -20,7 +20,6 @@ export class BookDetailsComponent implements OnInit {
   maxNote = 10;
 
   constructor(
-      private bookService: BookService,
       private commentService: CommentService,
       private formBuilder: FormBuilder,
       private route: ActivatedRoute
@@ -28,15 +27,10 @@ export class BookDetailsComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.route.params
-        .map(p => +p.id)
-        .switchMap(id => this.bookService.findOne(id))
-        .subscribe(b => this.book = b);
-
-    this.route.params
-        .map(p => +p.id)
-        .switchMap(id => this.commentService.findByBook(id))
-        .subscribe(c => this.comments = c);
+    this.route.data.subscribe(d => {
+          this.book = d.book;
+          this.comments = d.comments;
+        });
 
     this.form = this.formBuilder.group({
       login: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(12)]],
