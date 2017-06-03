@@ -7,8 +7,8 @@ import {BooksComponent} from './books.component';
 import {BookDetailsComponent} from './book-details/book-details.component';
 
 export const routes: Routes = [
-  { path : 'books', component: BooksComponent },
-  { path : 'books/:id', component: BookDetailsComponent }
+  { path : '', component: BooksComponent },
+  { path : ':id', component: BookDetailsComponent }
 ];
 
 @NgModule({
