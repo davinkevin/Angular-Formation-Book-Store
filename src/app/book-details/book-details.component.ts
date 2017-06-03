@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {CommentService, Comment} from '../shared/service/comment/comment.service';
-import {Book} from '../shared/book';
+import {Book, BookService} from '../shared/service/book/book.service';
+import {ActivatedRoute} from '@angular/router';
+import 'rxjs/add/operator/switchMap';
 
 @Component({
   selector: 'bs-root',
@@ -10,25 +12,27 @@ import {Book} from '../shared/book';
 })
 export class BookDetailsComponent implements OnInit {
 
-  book: Book = {
-    title: 'Essential Angular',
-    description: 'The book is a short, but at the same time, fairly complete overview of the key aspects of Angular ' +
-    'written by its core contributors Victor Savkin and Jeff Cross, who are founders of Nrwl - Angular Consulting ' +
-    'for enterprise customers, from core contributors.',
-    coverUrl: 'assets/books/essential_angular.jpg'
-  };
-
+  book: Book;
   comments: Array<Comment> = [];
+
   form: FormGroup;
   isLoading = false;
   maxNote = 10;
 
   constructor(
+      private bookService: BookService,
       private commentService: CommentService,
-      private formBuilder: FormBuilder
+      private formBuilder: FormBuilder,
+      private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+
+    this.route.params
+        .map(p => +p.id)
+        .switchMap(id => this.bookService.findOne(id))
+        .subscribe(b => this.book = b);
+
     this.form = this.formBuilder.group({
       login: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(12)]],
       text: ['', Validators.required],
