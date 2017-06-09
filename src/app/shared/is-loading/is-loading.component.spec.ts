@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { IsLoadingComponent } from './is-loading.component';
 
-describe('IsLoadingComponent', () => {
+xdescribe('IsLoadingComponent', () => {
   let component: IsLoadingComponent;
   let fixture: ComponentFixture<IsLoadingComponent>;
 
